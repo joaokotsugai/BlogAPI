@@ -44,3 +44,16 @@ export const verifyUser = async ({ email, password }: VerifyUserProps) => {
 
     return user
 }
+
+export const getUserById = async (id: number) => {
+    console.log('Fetching user by id:', id)
+    return await prisma.user.findUnique({
+        where: { id },
+        select: {
+            id: true,
+            name: true,
+            email: true,
+            status: true,
+        }
+    })
+}
